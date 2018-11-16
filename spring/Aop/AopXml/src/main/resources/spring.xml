@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+    <bean id="myTest" class="MyTest.MyBean">
+        <constructor-arg name="myBeanName" value="jw"/>
+    </bean>
+    <bean id="methodBefore" class="MyTest.Advisor"/>
+    <aop:config>
+        <aop:advisor advice-ref="methodBefore" pointcut="execution(* setMyBeanName(..))"/>
+        <aop:advisor advice-ref="methodBefore" pointcut="execution(* getMyBeanName(..))"/>
+    </aop:config>
+
+    <bean id="aop" class="MyTest.Aop"/>
+    <aop:config>
+        <aop:aspect ref="aop">
+            <aop:pointcut id="aopPoint" expression="execution(* getMyBeanName(..))"/>
+            <aop:before method="before" pointcut-ref="aopPoint"/>
+            <aop:after method="after" pointcut-ref="aopPoint"/>
+            <aop:around method="around" pointcut-ref="aopPoint"/>
+        </aop:aspect>
+    </aop:config>
+</beans>

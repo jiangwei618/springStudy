@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="INFO">
+	<Appenders>
+		<Console name="Console" target="SYSTEM_OUT">
+			<PatternLayout pattern="%-d{yyyy-MM-dd HH:mm:ss} [ %t:%r ] - %l %m%n" />
+		</Console>
+		<File name="File" fileName="build/logs/spring-test.log">
+			<PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />
+		</File>
+	</Appenders>
+	<Loggers>
+		<Logger name="org.junit.platform" level="info" />
+		<Logger name="org.springframework.test.context" level="info" />
+		<Logger name="org.springframework.test.context.TestContext" level="info" />
+		<Logger name="org.springframework.test.context.TestContextManager" level="info" />
+		<Logger name="org.springframework.test.context.ContextLoaderUtils" level="info" />
+		<Logger name="org.springframework.test.context.cache" level="info" />
+		<Logger name="org.springframework.test.context.junit4.rules" level="info" />
+		<Logger name="org.springframework.test.context.transaction.TransactionalTestExecutionListener" level="info" />
+		<Logger name="org.springframework.test.context.web" level="info" />
+		<!-- The following must be kept at DEBUG in order to test SPR-14363. -->
+		<Logger name="org.springframework.test.util" level="info" />
+<!--
+		<Logger name="org.springframework.test.context.support" level="info" />
+		<Logger name="org.springframework.test.context.support.DelegatingSmartContextLoader" level="info" />
+		<Logger name="org.springframework.test.context.support.AbstractGenericContextLoader" level="info" />
+		<Logger name="org.springframework.test.context.support.AnnotationConfigContextLoader" level="info" />
+		<Logger name="org.springframework.beans" level="warn" />
+		<Logger name="org.springframework.test.web.servlet.result" level="debug" />
+-->
+		<Root level="info">
+			<AppenderRef ref="Console" />
+			<!--<AppenderRef ref="File" />-->
+		</Root>
+	</Loggers>
+</Configuration>
